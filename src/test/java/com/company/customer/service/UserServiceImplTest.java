@@ -3,9 +3,11 @@ package com.company.customer.service;
 import com.company.customer.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 	private UserServiceImpl userService;
 
@@ -16,7 +18,6 @@ class UserServiceImplTest {
 		userService = new UserServiceImpl();
 
 		user = new User();
-		user.setId(1L);
 		user.setName("John");
 		user.setLastName("Doe");
 		user.setAddress("123 Main St");
@@ -33,7 +34,7 @@ class UserServiceImplTest {
 		assertEquals(user.getAddress(), createdUser.getAddress());
 		assertEquals(user.getCity(), createdUser.getCity());
 		assertEquals(user.getEmailAddress(), createdUser.getEmailAddress());
-		assertEquals(1L, createdUser.getId());
+		assertNotNull(createdUser.getId());
 	}
 
 	@Test
@@ -54,7 +55,7 @@ class UserServiceImplTest {
 
 	@Test
 	void testUpdateUser_withExistingUser() {
-		userService.createUser(user);
+		User existingUser = userService.createUser(user);
 
 		User updatedUser = new User();
 		updatedUser.setName("Updated");
@@ -63,9 +64,9 @@ class UserServiceImplTest {
 		updatedUser.setCity("Newtown");
 		updatedUser.setEmailAddress("updateduser@example.com");
 
-		User result = userService.updateUser(1L, updatedUser);
+		User result = userService.updateUser(existingUser.getId(), updatedUser);
 
-		assertEquals(1L, result.getId());
+		assertEquals(existingUser.getId(), result.getId());
 		assertEquals(updatedUser.getName(), result.getName());
 		assertEquals(updatedUser.getLastName(), result.getLastName());
 		assertEquals(updatedUser.getAddress(), result.getAddress());
