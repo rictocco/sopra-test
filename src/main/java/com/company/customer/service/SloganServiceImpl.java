@@ -1,7 +1,7 @@
 package com.company.customer.service;
 
-import com.company.customer.error.SloganMaxReachedException;
-import com.company.customer.error.UserNotFoundException;
+import com.company.customer.exception.SloganMaxReachedException;
+import com.company.customer.exception.UserNotFoundException;
 import com.company.customer.model.Slogan;
 import com.company.customer.model.User;
 import org.springframework.stereotype.Service;
@@ -21,11 +21,11 @@ public class SloganServiceImpl implements SloganServiceInterface {
 	}
 
 	@Override
-	public Long addSlogan(Long userId, String slogan) throws Exception {
+	public Long addSlogan(Long userId, String slogan) throws UserNotFoundException, SloganMaxReachedException {
 		User user = userService.getUserById(userId);
 		List<Slogan> slogans;
 
-		if (user == null) { throw new UserNotFoundException();}
+		if (user == null) { throw new UserNotFoundException(String.format("The user %s not found", userId));}
 
 		if (userSloganListMap.containsKey(userId)) {
 			slogans = userSloganListMap.get(userId);

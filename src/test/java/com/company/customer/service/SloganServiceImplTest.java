@@ -1,7 +1,7 @@
 package com.company.customer.service;
 
-import com.company.customer.error.SloganMaxReachedException;
-import com.company.customer.error.UserNotFoundException;
+import com.company.customer.exception.SloganMaxReachedException;
+import com.company.customer.exception.UserNotFoundException;
 import com.company.customer.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
