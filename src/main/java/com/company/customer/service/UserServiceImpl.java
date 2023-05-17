@@ -1,10 +1,11 @@
 package com.company.customer.service;
 
 import com.company.customer.model.User;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Service
 public class UserServiceImpl implements UserServiceInterface {
 	private final Map<Long, User> userMap = new HashMap<>();
 	private static long nextId = 1L;

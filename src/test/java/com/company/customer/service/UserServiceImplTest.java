@@ -9,9 +9,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
-	private UserServiceImpl userService;
+	private UserServiceInterface userService;
 
-	User user;
+	private User user;
 
 	@BeforeEach
 	void setUp() {

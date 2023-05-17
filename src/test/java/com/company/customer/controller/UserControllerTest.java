@@ -4,7 +4,6 @@ import com.company.customer.model.User;
 import com.company.customer.service.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,9 +25,6 @@ class UserControllerTest {
 
 	@MockBean
 	private UserServiceImpl userServiceImpl;
-
-	@InjectMocks
-	private UserController userController;
 
 	@Autowired
 	private ObjectMapper objectMapper;
